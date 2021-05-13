@@ -45,7 +45,7 @@
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Lucida Sans", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label1.Font = new System.Drawing.Font("Lucida Sans", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(141, 25);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
@@ -102,7 +102,6 @@
             // 
             this.drComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.drComboBox.FormattingEnabled = true;
-            this.drComboBox.Items.AddRange(new object[] {"Honda", "Toyota ", "Lada", "Buggy "});
             this.drComboBox.Location = new System.Drawing.Point(12, 308);
             this.drComboBox.Name = "drComboBox";
             this.drComboBox.Size = new System.Drawing.Size(261, 24);
@@ -159,12 +158,14 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbCustomerName);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Rental Application";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private System.Windows.Forms.TextBox tbCost;

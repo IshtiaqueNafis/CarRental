@@ -8,14 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CarRental.Models;
 
 namespace CarRental
 {
     public partial class Form1 : Form
     {
+        private readonly ApplicationDbContext _caRentalEntities;
         public Form1()
         {
             InitializeComponent(); // do not remove this 
+            _caRentalEntities = new ApplicationDbContext();
         }
 
 
@@ -43,18 +46,26 @@ namespace CarRental
                 errormessage += "date in wrong format";
 
             }
-            if(!isValid)
+            if(isValid)
             {
-                MessageBox.Show(errormessage);
-            }
+                var rentalRecord = new CarRentals
+                {
+                    CustomerName = customerName, DateRented = dateOut, DateReturned = dateIn, Cost =(decimal)cost,
+                    CarTypeId =(int)drComboBox.SelectedValue
+                };
+                _caRentalEntities.CarRentals.Add(rentalRecord);
+                _caRentalEntities.SaveChanges();
+                MessageBox.Show($@"Customer Name {customerName}" +
+                                $@"Date Got {dateOut}" +
+                                $@"Date In {dateOut}" +
+                                $@"Date In {dateIn}" +
+                                $@"Car Type {carType}" +
+                                $@"Cost {cost}");
+                }
             else
             {
-                MessageBox.Show($@"Customer Name {customerName}" +
-                                $@"Date Got {dateOut}"+
-                                $@"Date In {dateOut}"+
-                                $@"Date In {dateIn}"+
-                                $@"Car Type {carType}"+
-                                $@"Cost {cost}");
+                MessageBox.Show(errormessage);
+               
             }
            
             }
@@ -68,9 +79,13 @@ namespace CarRental
               
            
         }
-        
 
-
-        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            var cars = _caRentalEntities.CarTypes.ToList(); // this gets the car from the database. 
+            drComboBox.DisplayMember = "Name"; // set the property name 
+            drComboBox.ValueMember = "Id"; // set the id 
+            drComboBox.DataSource = cars; // cars 
+        }
     }
 }
