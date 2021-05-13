@@ -12,10 +12,10 @@ using CarRental.Models;
 
 namespace CarRental
 {
-    public partial class Form1 : Form
+    public partial class AddRentalRecord : Form
     {
         private readonly ApplicationDbContext _caRentalEntities;
-        public Form1()
+        public AddRentalRecord()
         {
             InitializeComponent(); // do not remove this 
             _caRentalEntities = new ApplicationDbContext();
@@ -86,6 +86,13 @@ namespace CarRental
             drComboBox.DisplayMember = "Name"; // set the property name 
             drComboBox.ValueMember = "Id"; // set the id 
             drComboBox.DataSource = cars; // cars 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var mainWindow = new MainWindow();
+            mainWindow.Show(); // this will show the main window
+
         }
     }
 }
